@@ -24,16 +24,32 @@ import { ContactModule } from './contact/contact.module';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DATABASE_URL', 'localhost'),
-        port: configService.get<number>('DATABASE_PORT', 5433),
-        username: configService.get('DATABASE_USER', 'postgres'),
-        password: configService.get('DATABASE_PASSWORD', 'postgres'),
-        database: configService.get('DATABASE_NAME', 'portfolio'),
-        entities: [Profile, Project, Experience, Education, ContactMessage],
-        synchronize: configService.get<boolean>('DATABASE_SYNC', true),
-      }),
+      useFactory: (configService: ConfigService) => {
+        const databaseUrl = configService.get('DATABASE_URL');
+        
+        // Si existe DATABASE_URL completa, úsala
+        if (databaseUrl && databaseUrl.startsWith('postgresql://')) {
+          return {
+            type: 'postgres',
+            url: databaseUrl,
+            entities: [Profile, Project, Experience, Education, ContactMessage],
+            synchronize: configService.get<boolean>('DATABASE_SYNC', true),
+            ssl: configService.get('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+          };
+        }
+        
+        // Sino, usa variables individuales (local development)
+        return {
+          type: 'postgres',
+          host: configService.get('DATABASE_HOST', 'localhost'),
+          port: configService.get<number>('DATABASE_PORT', 5433),
+          username: configService.get('DATABASE_USER', 'postgres'),
+          password: configService.get('DATABASE_PASSWORD', 'postgres'),
+          database: configService.get('DATABASE_NAME', 'portfolio'),
+          entities: [Profile, Project, Experience, Education, ContactMessage],
+          synchronize: configService.get<boolean>('DATABASE_SYNC', true),
+        };
+      },
     }),
     ProfileModule,
     ProjectsModule,
