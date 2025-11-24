@@ -39,7 +39,12 @@ import { ContactModule } from './contact/contact.module';
             url: databaseUrl,
             entities: [Profile, Project, Experience, Education, ContactMessage],
             synchronize: configService.get<boolean>('DATABASE_SYNC', false),
-            ssl: { rejectUnauthorized: false },
+            ssl: true,
+            extra: {
+              ssl: {
+                rejectUnauthorized: false,
+              },
+            },
             logging: false,
           };
         }
