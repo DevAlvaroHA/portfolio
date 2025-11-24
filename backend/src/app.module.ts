@@ -26,21 +26,28 @@ import { ContactModule } from './contact/contact.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const databaseUrl = configService.get('DATABASE_URL');
+        const nodeEnv = configService.get('NODE_ENV');
         
-        // Si existe DATABASE_URL completa, úsala
-        if (databaseUrl && databaseUrl.startsWith('postgresql://')) {
+        console.log('🔍 DATABASE_URL exists:', !!databaseUrl);
+        console.log('🔍 NODE_ENV:', nodeEnv);
+        
+        // En producción, SIEMPRE usar DATABASE_URL
+        if (nodeEnv === 'production' && databaseUrl) {
+          console.log('✅ Using DATABASE_URL for production');
           return {
-            type: 'postgres',
+            type: 'postgres' as const,
             url: databaseUrl,
             entities: [Profile, Project, Experience, Education, ContactMessage],
-            synchronize: configService.get<boolean>('DATABASE_SYNC', true),
-            ssl: configService.get('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+            synchronize: configService.get<boolean>('DATABASE_SYNC', false),
+            ssl: { rejectUnauthorized: false },
+            logging: false,
           };
         }
         
-        // Sino, usa variables individuales (local development)
+        // Desarrollo local: usar variables individuales
+        console.log('📍 Using individual DB variables for development');
         return {
-          type: 'postgres',
+          type: 'postgres' as const,
           host: configService.get('DATABASE_HOST', 'localhost'),
           port: configService.get<number>('DATABASE_PORT', 5433),
           username: configService.get('DATABASE_USER', 'postgres'),
@@ -48,6 +55,7 @@ import { ContactModule } from './contact/contact.module';
           database: configService.get('DATABASE_NAME', 'portfolio'),
           entities: [Profile, Project, Experience, Education, ContactMessage],
           synchronize: configService.get<boolean>('DATABASE_SYNC', true),
+          logging: true,
         };
       },
     }),
