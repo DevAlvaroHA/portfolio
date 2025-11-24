@@ -1,0 +1,57 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=db
+      - DATABASE_PORT=5432
+      - DATABASE_USER=${DATABASE_USER:-postgres}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD:-postgres}
+      - DATABASE_NAME=${DATABASE_NAME:-portfolio}
+      - DATABASE_SYNC=false # Only set to true in development
+      - NODE_ENV=production
+      - FRONTEND_URL=http://frontend:3003
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3003:3003"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3003
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+    networks:
+      - app-network
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${DATABASE_USER:-postgres}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-postgres}
+      - POSTGRES_DB=${DATABASE_NAME:-portfolio}
+    ports:
+      - "5433:5432"
+    volumes:
+      - portfolio_postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  portfolio_postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

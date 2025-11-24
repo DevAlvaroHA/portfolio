@@ -1,0 +1,55 @@
+databases:
+  - name: portfolio-db
+    databaseName: portfolio
+    user: postgres
+    plan: starter
+
+services:
+  - type: web
+    name: portfolio-backend
+    runtime: node
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm run start:prod
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: portfolio-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: portfolio-db
+          property: port
+      - key: DATABASE_USER
+        fromDatabase:
+          name: portfolio-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: portfolio-db
+          property: password
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: portfolio-db
+          property: database
+      - key: DATABASE_SYNC
+        value: "true" # Solo para primera migración, cambiar a false después
+      - key: NODE_ENV
+        value: "production"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://tu-portfolio-frontend.onrender.com # Actualizar con tu URL real
+
+  - type: web
+    name: portfolio-frontend
+    runtime: node
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: portfolio-backend
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: NEXT_PUBLIC_APP_URL
+        value: https://tu-portfolio-frontend.onrender.com # Actualizar con tu URL real
