@@ -34,16 +34,21 @@ import { ContactModule } from './contact/contact.module';
         // En producción, SIEMPRE usar DATABASE_URL
         if (nodeEnv === 'production' && databaseUrl) {
           console.log('✅ Using DATABASE_URL for production');
+          
+          // Parse DATABASE_URL para extraer componentes
+          const url = new URL(databaseUrl);
+          
           return {
             type: 'postgres' as const,
-            url: databaseUrl,
+            host: url.hostname,
+            port: parseInt(url.port) || 5432,
+            username: url.username,
+            password: url.password,
+            database: url.pathname.slice(1), // Remove leading /
             entities: [Profile, Project, Experience, Education, ContactMessage],
             synchronize: configService.get<boolean>('DATABASE_SYNC', false),
-            ssl: true,
-            extra: {
-              ssl: {
-                rejectUnauthorized: false,
-              },
+            ssl: {
+              rejectUnauthorized: false,
             },
             logging: false,
           };
