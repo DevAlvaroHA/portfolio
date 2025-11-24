@@ -48,11 +48,11 @@ import { ContactModule } from './contact/contact.module';
         console.log('📍 Using individual DB variables for development');
         return {
           type: 'postgres' as const,
-          host: configService.get('DATABASE_HOST', 'localhost'),
+          host: configService.get<string>('DATABASE_HOST', 'localhost'),
           port: configService.get<number>('DATABASE_PORT', 5433),
-          username: configService.get('DATABASE_USER', 'postgres'),
-          password: configService.get('DATABASE_PASSWORD', 'postgres'),
-          database: configService.get('DATABASE_NAME', 'portfolio'),
+          username: configService.get<string>('DATABASE_USER', 'postgres'),
+          password: configService.get<string>('DATABASE_PASSWORD', 'postgres'),
+          database: configService.get<string>('DATABASE_NAME', 'portfolio'),
           entities: [Profile, Project, Experience, Education, ContactMessage],
           synchronize: configService.get<boolean>('DATABASE_SYNC', true),
           logging: true,
