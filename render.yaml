@@ -8,8 +8,9 @@ services:
   - type: web
     name: portfolio-backend
     runtime: node
-    buildCommand: cd backend && npm install && npm run build
-    startCommand: cd backend && npm run start:prod
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -32,13 +33,13 @@ services:
           name: portfolio-db
           property: database
       - key: DATABASE_SYNC
-        value: "true" # Solo para primera migración, cambiar a false después
+        value: "false" # IMPORTANTE: Mantener en false en producción. Usar migraciones adecuadas.
       - key: NODE_ENV
         value: "production"
       - key: JWT_SECRET
         generateValue: true
       - key: FRONTEND_URL
-        value: https://tu-portfolio-frontend.onrender.com # Actualizar con tu URL real
+        value: https://your-portfolio-frontend.onrender.com # Actualizar con tu URL de Render
 
   - type: web
     name: portfolio-frontend
@@ -52,4 +53,4 @@ services:
           name: portfolio-backend
           envVarKey: RENDER_EXTERNAL_URL
       - key: NEXT_PUBLIC_APP_URL
-        value: https://tu-portfolio-frontend.onrender.com # Actualizar con tu URL real
+        value: https://your-portfolio-frontend.onrender.com # Actualizar con tu URL de Render

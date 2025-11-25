@@ -13,38 +13,30 @@ Guía rápida para iniciar el portfolio en modo desarrollo.
 ### 1. Base de Datos
 ```bash
 # Crear contenedor PostgreSQL
-docker container run -i -t -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=portfolio -v portfolio_postgres_data:/var/lib/postgresql/data -p 5433:5432 --name portfolio_db postgres:15-alpine
+docker container run -i -t -e POSTGRES_PASSWORD=tu_password_seguro -e POSTGRES_DB=portfolio -v portfolio_postgres_data:/var/lib/postgresql/data -p 5433:5432 --name portfolio_db postgres:15-alpine
 ```
+
+**Nota:** Reemplaza `tu_password_seguro` con una contraseña segura.
 
 ### 2. Variables de Entorno
 
-**Raíz del proyecto (`.env`):**
-```env
-DATABASE_PORT=5433
-DATABASE_USER=postgres
-DATABASE_PASSWORD=postgres
-DATABASE_NAME=portfolio
+Copia los archivos de ejemplo y configúralos:
+
+```bash
+# Raíz del proyecto
+cp .env.example .env
+
+# Backend
+cp backend/.env.example backend/.env
+
+# Frontend
+cp frontend/.env.example frontend/.env
 ```
 
-**Backend (`backend/.env`):**
-```env
-DATABASE_URL=localhost
-DATABASE_PORT=5433
-DATABASE_USER=postgres
-DATABASE_PASSWORD=postgres
-DATABASE_NAME=portfolio
-DATABASE_SYNC=true
-JWT_SECRET=tu-super-secreto-jwt-key-cambiar-en-produccion
-FRONTEND_URL=http://localhost:3003
-```
-
-**Frontend (`frontend/.env`):**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3000
-NEXT_PUBLIC_APP_URL=http://localhost:3003
-NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/tu-perfil
-NEXT_PUBLIC_GITHUB_URL=https://github.com/tu-usuario
-```
+**Edita cada archivo `.env`** con tus valores:
+- Configura la contraseña de la base de datos
+- Genera un JWT_SECRET seguro (mínimo 64 caracteres aleatorios)
+- Añade tus URLs de redes sociales en el frontend
 
 ### 3. Instalar Dependencias
 
@@ -65,9 +57,8 @@ cd backend
 npm run seed
 ```
 
-**Credenciales de admin creadas:**
-- Email: `admin@portfolio.com`
-- Password: `Admin123!`
+**Credenciales de admin:**
+Ver el archivo `backend/src/seed.ts` para las credenciales por defecto. Se recomienda cambiarlas después del primer login.
 
 ## 🏃 Arrancar en Desarrollo
 

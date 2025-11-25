@@ -4,15 +4,25 @@ node_modules/
 
 # Environment files
 .env
+.env.*
 .env.local
+.env.development
 .env.development.local
+.env.test
 .env.test.local
+.env.production
 .env.production.local
 backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
 frontend/.env.local
+frontend/.env.production
 
 # Keep example files
 !.env.example
+!backend/.env.example
+!frontend/.env.example
 
 # Next.js
 frontend/.next/

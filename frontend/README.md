@@ -28,13 +28,13 @@ pnpm install
 
 ## ⚙️ Configuración
 
-Crea un archivo `.env.local` en la raíz del directorio frontend:
+Crea tu archivo de configuración desde la plantilla:
 
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3000
-NEXT_PUBLIC_GITHUB_URL=https://github.com/tu-usuario
-NEXT_PUBLIC_LINKEDIN_URL=https://linkedin.com/in/tu-usuario
+```bash
+cp .env.example .env
 ```
+
+Edita el archivo `.env` con tus URLs personales.
 
 ## 🚀 Ejecución
 

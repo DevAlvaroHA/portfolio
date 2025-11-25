@@ -1,6 +1,6 @@
-# Portfolio Profesional - Álvaro Hermosilla Alameda
+# Portfolio Profesional
 
-Portfolio profesional desarrollado con Next.js y NestJS. Aplicación estática que muestra información profesional, proyectos, experiencia y formación académica. Los datos se editan directamente desde el código.
+Portfolio profesional desarrollado con Next.js y NestJS. Aplicación que muestra información profesional, proyectos, experiencia y formación académica. Los datos se gestionan desde la base de datos y se pueden editar desde el panel de administración.
 
 ## 🚀 Tecnologías
 
@@ -33,41 +33,28 @@ cd Portfolio
 
 Copia los archivos de ejemplo:
 
-**Raíz del proyecto (`.env`):**
-```env
-DATABASE_PORT=5433
-DATABASE_USER=postgres
-DATABASE_PASSWORD=postgres
-DATABASE_NAME=portfolio
+Copia los archivos de ejemplo y configúralos con tus credenciales:
+
+```bash
+# Raíz del proyecto
+cp .env.example .env
+
+# Backend
+cp backend/.env.example backend/.env
+
+# Frontend
+cp frontend/.env.example frontend/.env
 ```
 
-**Backend (`backend/.env`):**
-```env
-DATABASE_URL=localhost
-DATABASE_PORT=5433
-DATABASE_USER=postgres
-DATABASE_PASSWORD=postgres
-DATABASE_NAME=portfolio
-DATABASE_SYNC=true
-
-FRONTEND_URL=http://localhost:3003
-```
-
-**Frontend (`frontend/.env`):**
-```env
-NEXT_PUBLIC_API_URL=http://localhost:3000
-NEXT_PUBLIC_APP_URL=http://localhost:3003
-
-# Redes sociales
-NEXT_PUBLIC_LINKEDIN_URL=https://www.linkedin.com/in/álvaro-hermosilla-alameda-587526339
-NEXT_PUBLIC_GITHUB_URL=https://github.com/DevAlvaroHA
-```
+Edita cada archivo `.env` con tus valores. Ver archivos `.env.example` para más detalles.
 
 ### 3. Crear contenedor de base de datos
 
 ```bash
-docker container run -i -t -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=portfolio -v portfolio_postgres_data:/var/lib/postgresql/data -p 5433:5432 --name portfolio_db postgres:15-alpine
+docker container run -i -t -e POSTGRES_PASSWORD=tu_password_seguro -e POSTGRES_DB=portfolio -v portfolio_postgres_data:/var/lib/postgresql/data -p 5433:5432 --name portfolio_db postgres:15-alpine
 ```
+
+**Nota:** Reemplaza `tu_password_seguro` con una contraseña segura.
 
 **Gestionar el contenedor:**
 ```bash
@@ -102,11 +89,11 @@ cd backend
 npm run seed
 ```
 
-Este comando creará:
-- ✅ Perfil de Álvaro Hermosilla
-- ✅ Experiencia en Futura Tickets
-- ✅ 3 Formaciones académicas (IES Valle Inclán, IES Isidra de Guzmán, IES Ignacio Ellacuría)
-- ✅ Proyecto Portfolio de ejemplo
+Este comando creará datos de ejemplo:
+- ✅ Perfil profesional de ejemplo
+- ✅ Experiencia laboral de muestra
+- ✅ 3 Formaciones académicas de ejemplo
+- ✅ 9 Proyectos de ejemplo (Full Stack, Frontend, Backend, Cybersecurity)
 
 ### 6. Ejecutar en desarrollo
 
@@ -147,7 +134,7 @@ Usa un cliente PostgreSQL (pgAdmin, DBeaver, etc.) y conecta a:
 - Host: localhost
 - Puerto: 5433
 - Usuario: postgres
-- Password: postgres
+- Password: (el que configuraste en .env)
 - Database: portfolio
 
 Tablas principales:
@@ -228,9 +215,7 @@ Ver `render.yaml` para configuración de deployment.
 
 ## 📧 Contacto
 
-- **Email**: alvaro.hermosilla.alameda@gmail.com
-- **LinkedIn**: [Álvaro Hermosilla](https://www.linkedin.com/in/álvaro-hermosilla-alameda-587526339)
-- **GitHub**: [DevAlvaroHA](https://github.com/DevAlvaroHA)
+Para soporte o consultas sobre este proyecto, abre un issue en GitHub o contacta al desarrollador.
 
 ## 📄 Licencia
 MIT

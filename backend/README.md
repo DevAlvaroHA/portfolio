@@ -7,10 +7,12 @@
 cd backend
 npm install
 
-# 2. Create .env file (see .env.example)
+# 2. Copy and configure .env file
+cp .env.example .env
+# Edit .env with your database credentials
 
 # 3. Start Docker database
-docker run -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=portfolio -v portfolio_postgres_data:/var/lib/postgresql/data -p 5433:5432 --name portfolio_db postgres:15-alpine
+docker run -d -e POSTGRES_PASSWORD=tu_password_seguro -e POSTGRES_DB=portfolio -v portfolio_postgres_data:/var/lib/postgresql/data -p 5433:5432 --name portfolio_db postgres:15-alpine
 
 # 4. Seed database with sample data
 npm run seed
@@ -50,12 +52,9 @@ Access:
 - `POST /contact` - Send message (public)
 - `GET /contact` - List messages (admin)
 
-## 🔐 Default Credentials (after seed)
+## 🔐 Admin Access
 
-```
-Email: admin@portfolio.com
-Password: Admin123!
-```
+El script seed crea un usuario administrador. Las credenciales se pueden ver en el archivo `src/seed.ts` o configurarse según tus necesidades de seguridad.
 
 ## 🛠️ Scripts
 
