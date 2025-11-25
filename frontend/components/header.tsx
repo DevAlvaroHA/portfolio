@@ -28,11 +28,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">AH</span>
+              <span className="text-white font-bold text-xl">P</span>
             </div>
             <div className="hidden sm:block">
               <div className="text-xl font-bold">
-                <span className="text-blue-400">Álvaro</span> Hermosilla
+                <span className="text-blue-400">Port</span>folio
               </div>
               <div className="text-xs text-gray-400">Full-Stack Developer</div>
             </div>
@@ -55,17 +55,17 @@ export default function Header() {
           {/* Social Links Desktop */}
           <div className="hidden md:flex items-center space-x-2">
             <Button variant="ghost" size="icon" asChild>
-              <Link href="https://github.com/DevAlvaroHA" target="_blank" rel="noopener noreferrer" title="GitHub">
+              <Link href={process.env.NEXT_PUBLIC_GITHUB_URL || '#'} target="_blank" rel="noopener noreferrer" title="GitHub">
                 <Github className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="ghost" size="icon" asChild>
-              <Link href="https://www.linkedin.com/in/álvaro-hermosilla-alameda-587526339" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+              <Link href={process.env.NEXT_PUBLIC_LINKEDIN_URL || '#'} target="_blank" rel="noopener noreferrer" title="LinkedIn">
                 <Linkedin className="h-5 w-5" />
               </Link>
             </Button>
             <Button variant="ghost" size="icon" asChild>
-              <Link href="mailto:alvaro.hermosilla.alameda@gmail.com" title="Email">
+              <Link href="/contact" title="Contact">
                 <Mail className="h-5 w-5" />
               </Link>
             </Button>
@@ -100,17 +100,17 @@ export default function Header() {
             ))}
             <div className="pt-2 border-t border-slate-700 flex justify-center space-x-2">
               <Button variant="ghost" size="icon" asChild>
-                <Link href="https://github.com/DevAlvaroHA" target="_blank">
+                <Link href={process.env.NEXT_PUBLIC_GITHUB_URL || '#'} target="_blank">
                   <Github className="h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <Link href="https://www.linkedin.com/in/álvaro-hermosilla-alameda-587526339" target="_blank">
+                <Link href={process.env.NEXT_PUBLIC_LINKEDIN_URL || '#'} target="_blank">
                   <Linkedin className="h-5 w-5" />
                 </Link>
               </Button>
               <Button variant="ghost" size="icon" asChild>
-                <Link href="mailto:alvaro.hermosilla.alameda@gmail.com">
+                <Link href="/contact">
                   <Mail className="h-5 w-5" />
                 </Link>
               </Button>

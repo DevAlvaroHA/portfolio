@@ -9,18 +9,18 @@ import SiteFooter from '@/components/site-footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Álvaro Hermosilla - Portfolio Profesional',
-  description: 'Portfolio de Álvaro Hermosilla Alameda. Técnico Superior ASIR & DAW | Full-Stack Web Developer (React, Node.js, MySQL) | Sistemas & Redes | DevOps (Docker, Linux) | Ciberseguridad: Ethical Hacking & Forense Digital | Python Automation | Cloud & Virtualización | UX | Inglés B2',
-  keywords: ['portfolio', 'desarrollador', 'full-stack', 'web development', 'react', 'nodejs', 'typescript', 'sistemas', 'redes', 'devops', 'ciberseguridad', 'ethical hacking', 'docker', 'linux', 'python', 'mysql', 'cloud', 'asir', 'daw', 'ux'],
-  authors: [{ name: 'Álvaro Hermosilla Alameda' }],
+  title: 'Professional Portfolio',
+  description: 'Full-Stack Web Developer Portfolio - Modern web applications with React, Node.js, TypeScript, and more.',
+  keywords: ['portfolio', 'developer', 'full-stack', 'web development', 'react', 'nodejs', 'typescript', 'software engineer'],
+  authors: [{ name: 'Portfolio Owner' }],
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
     apple: '/favicon.ico',
   },
   openGraph: {
-    title: 'Álvaro Hermosilla - Portfolio Profesional',
-    description: 'Técnico Superior ASIR & DAW | Full-Stack Web Developer | Sistemas & Redes | DevOps | Ciberseguridad',
+    title: 'Professional Portfolio',
+    description: 'Full-Stack Web Developer | Software Engineer | Modern Web Applications',
     type: 'website',
   },
 };

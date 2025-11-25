@@ -30,12 +30,8 @@ import { AppService } from './app.service';
         const databaseUrl = configService.get('DATABASE_URL');
         const nodeEnv = configService.get('NODE_ENV');
         
-        console.log('🔍 DATABASE_URL exists:', !!databaseUrl);
-        console.log('🔍 NODE_ENV:', nodeEnv);
-        
         // En producción, SIEMPRE usar DATABASE_URL
         if (nodeEnv === 'production' && databaseUrl) {
-          console.log('✅ Using DATABASE_URL for production');
           
           // Parse DATABASE_URL para extraer componentes
           const url = new URL(databaseUrl);
@@ -57,7 +53,6 @@ import { AppService } from './app.service';
         }
         
         // Desarrollo local: usar variables individuales
-        console.log('📍 Using individual DB variables for development');
         return {
           type: 'postgres' as const,
           host: configService.get<string>('DATABASE_HOST', 'localhost'),

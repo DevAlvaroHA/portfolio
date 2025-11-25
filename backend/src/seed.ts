@@ -14,11 +14,107 @@ async function bootstrap() {
   const educationService = app.get(EducationService);
 
   try {
-    console.log('🌱 Iniciando seed con datos de Álvaro Hermosilla...\n');
-
-    // 1. Crear perfil
-    console.log('📝 Creando perfil...');
+    // 1. Create profile
     const profiles = await profileService.findAll();
+    
+    if (profiles.length === 0) {
+      await profileService.create({
+        fullName: 'Your Full Name',
+        title: 'Your Professional Title',
+        bio: 'Your professional biography goes here. Describe your experience, skills, and career goals.',
+        location: 'Your Location',
+        email: 'your.email@example.com',
+        phone: undefined,
+        linkedinUrl: 'https://www.linkedin.com/in/your-profile',
+        githubUrl: 'https://github.com/your-username',
+        skills: [
+          'JavaScript', 'TypeScript', 'React', 'Node.js',
+          'PostgreSQL', 'Docker', 'Git', 'REST APIs'
+        ],
+        languages: ['English (Native)'],
+        isActive: true,
+      });
+    }
+
+    // 2. Create experience
+    const experiences = await experienceService.findAll();
+    
+    if (experiences.length === 0) {
+      await experienceService.create({
+        company: 'Company Name',
+        position: 'Your Position',
+        description: 'Brief description of your role and responsibilities.',
+        responsibilities: [
+          'Responsibility 1',
+          'Responsibility 2',
+          'Responsibility 3'
+        ],
+        technologies: ['Technology 1', 'Technology 2', 'Technology 3'],
+        startDate: new Date('2023-01-01'),
+        endDate: new Date('2024-12-31'),
+        current: false,
+        location: 'Location',
+        companyUrl: undefined,
+        employmentType: 'Full-time',
+        order: 1,
+      });
+    }
+
+    // 3. Create education
+    const education = await educationService.findAll();
+    
+    if (education.length === 0) {
+      await educationService.create({
+        institution: 'University/Institution Name',
+        degree: 'Degree Name',
+        fieldOfStudy: 'Field of Study',
+        description: 'Description of your education.',
+        startDate: new Date('2019-09-01'),
+        endDate: new Date('2023-06-30'),
+        current: false,
+        activities: ['Activity 1', 'Activity 2', 'Activity 3'],
+        order: 1,
+      });
+    }
+
+    // 4. Create projects
+    const projects = await projectsService.findAll();
+    
+    if (projects.length > 0) {
+      for (const project of projects) {
+        await projectsService.remove(project.id);
+      }
+    }
+    
+    await projectsService.create({
+      title: 'Portfolio Website',
+      description: 'Modern portfolio website built with Next.js and NestJS.',
+      technologies: ['Next.js', 'React', 'TypeScript', 'NestJS', 'PostgreSQL', 'Docker'],
+      githubUrl: 'https://github.com/your-username/portfolio',
+      features: ['Responsive design', 'REST API', 'Database integration', 'Modern UI'],
+      featured: true,
+      category: 'Full Stack',
+      order: 1,
+    });
+
+    return {
+      success: true,
+      message: 'Seed completed successfully!',
+    };
+
+  } catch (error) {
+    return {
+      success: false,
+      message: 'Error executing seed',
+      error: error.message,
+    };
+  } finally {
+    await app.close();
+  }
+}
+
+bootstrap();
+
     
     if (profiles.length === 0) {
       await profileService.create({
