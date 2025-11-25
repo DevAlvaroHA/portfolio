@@ -9,9 +9,9 @@ export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Enviar mensaje de contacto' })
-  @ApiResponse({ status: 201, description: 'Mensaje enviado exitosamente' })
-  @ApiResponse({ status: 400, description: 'Datos inválidos' })
+  @ApiOperation({ summary: 'Send contact message' })
+  @ApiResponse({ status: 201, description: 'Message sent successfully' })
+  @ApiResponse({ status: 400, description: 'Invalid data' })
   create(@Body() createContactMessageDto: CreateContactMessageDto) {
     return this.contactService.create(createContactMessageDto);
   }

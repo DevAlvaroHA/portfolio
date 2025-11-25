@@ -36,20 +36,20 @@ export class AppController {
       if (profiles.length === 0) {
         await this.profileService.create({
           fullName: 'Álvaro Hermosilla Alameda',
-          title: 'Full-Stack Web Developer | Sistemas & Redes | DevOps & Cloud',
-          bio: 'Me apasiona conectar el desarrollo de software con la infraestructura que lo hace posible. Combino desarrollo Full-Stack Web (React, Node.js, MySQL) con administración de sistemas y buenas prácticas DevOps (Linux, Docker), creando soluciones que funcionan, escalan y se mantienen seguras. Creo en la tecnología como motor de eficiencia y oportunidad: desde aplicaciones web que optimizan procesos hasta entornos cloud robustos y protegidos frente a amenazas.',
-          location: 'España',
+          title: 'Full-Stack Web Developer | Systems & Networks | DevOps & Cloud',
+          bio: 'I am passionate about connecting software development with the infrastructure that makes it possible. I combine Full-Stack Web development (React, Node.js, MySQL) with system administration and DevOps best practices (Linux, Docker), creating solutions that work, scale, and remain secure. I believe in technology as a driver of efficiency and opportunity: from web applications that optimize processes to robust cloud environments protected against threats.',
+          location: 'Spain',
           email: 'alvaro.hermosilla.alameda@gmail.com',
           phone: undefined,
           linkedinUrl: 'https://es.linkedin.com/in/%C3%A1lvaro-hermosilla-alameda-587526339',
           githubUrl: 'https://github.com/DevAlvaroHA',
           skills: [
-            'JavaScript', 'TypeScript', 'Python', 'React', 'Redux', 'Next.js',
-            'Node.js', 'Express', 'NestJS', 'PostgreSQL', 'MySQL', 'MongoDB',
-            'Docker', 'Linux', 'Nginx', 'Apache', 'Git', 'GitHub',
-            'Windows Server', 'Firewalls', 'VPN', 'Kali Linux', 'Ethical Hacking'
+            'JavaScript', 'Python', 'HTML5', 'CSS3', 'APIs REST', 'UX',
+            'React', 'Node.js', 'MySQL', 'Linux', 'Docker', 'Virtualización',
+            'CI/CD', 'Administración de Sistemas', 'Windows Server', 'Troubleshooting', 'Monitoring', 'Ethical Hacking',
+            'Análisis Forense Digital', 'Firewalls', 'Git', 'Scrum', 'Soporte Técnico', 'TypeScript'
           ],
-          languages: ['Español (Nativo)', 'Inglés'],
+          languages: ['Spanish (Native)', 'English'],
           isActive: true,
         });
       }
@@ -59,22 +59,20 @@ export class AppController {
       if (experiences.length === 0) {
         await this.experienceService.create({
           company: 'Futura Tickets',
-          position: 'Desarrollador Web',
-          description: 'Desarrollo de una plataforma web para compra y venta de entradas basada en tecnología blockchain.',
+          position: 'Frontend Engineer | User Experience Architect',
+          description: 'Desarrollo de una página web para compra y venta de entradas utilizando tecnología blockchain.',
           responsibilities: [
-            'Desarrollo de plataforma web para compra y venta de entradas',
-            'Implementación de transacciones seguras con tecnología blockchain',
-            'Implementación de funcionalidades de gestión de usuarios',
-            'Participación en entorno de trabajo ágil',
-            'Colaboración remota con el equipo técnico'
+            'Desarrollo de una página web para compra y venta de entradas utilizando tecnología blockchain',
+            'Implementación de funciones de transacción segura y gestión de usuarios',
+            'Colaboración remota en un entorno de trabajo ágil'
           ],
           technologies: ['Blockchain', 'Web Development', 'JavaScript', 'React', 'Node.js'],
-          startDate: new Date('2024-09-01'),
-          endDate: new Date('2024-12-01'),
+          startDate: new Date('2025-03-01'),
+          endDate: new Date('2025-05-01'),
           current: false,
-          location: 'Teletrabajo',
+          location: 'En remoto',
           companyUrl: undefined,
-          employmentType: 'Teletrabajo',
+          employmentType: 'Contrato de prácticas',
           order: 1,
         });
       }
@@ -83,19 +81,63 @@ export class AppController {
       const education = await this.educationService.findAll();
       if (education.length === 0) {
         await this.educationService.create({
-          institution: 'University Name',
-          degree: 'Bachelor of Science',
-          fieldOfStudy: 'Computer Science',
-          description: 'Computer Science and Software Engineering.',
-          startDate: new Date('2019-09-01'),
+          institution: 'IES Valle Inclán',
+          degree: 'Técnico Superior en Administración de Sistemas Informáticos en Red',
+          fieldOfStudy: 'Administración de sistemas informáticos en red',
+          description: 'Formación técnica especializada en administración de sistemas, redes y infraestructura IT.',
+          startDate: new Date('2025-09-01'),
+          endDate: new Date('2027-06-30'),
+          current: false,
+          activities: [
+            'Gestión de redes',
+            'Aplicaciones de gestión de redes',
+            'Seguridad de redes',
+            'Administración de sistemas',
+            'Administración de sistemas Linux',
+            'Sistema de gestión de bases de datos (SGBD)',
+            'Administración de base de datos de Oracle',
+            'Sistemas operativos',
+            'Administración de sistemas operativos'
+          ],
+          order: 1,
+        });
+
+        await this.educationService.create({
+          institution: 'IES Isidra de Guzmán',
+          degree: 'Técnico Superior en Desarrollo de Aplicaciones Web',
+          fieldOfStudy: 'Programación informática, aplicaciones específicas',
+          description: 'Formación técnica en desarrollo de aplicaciones web y programación.',
+          startDate: new Date('2023-09-01'),
+          endDate: new Date('2025-06-30'),
+          current: false,
+          activities: [
+            'Sistema de gestión de bases de datos (SGBD)',
+            'Administración de base de datos de Oracle',
+            'Diseño web',
+            'Servicios web',
+            'Aplicaciones web',
+            'Web 2.0',
+            'Administración de páginas web',
+            'Gestión de proyectos web',
+            'Diseño de bases de datos'
+          ],
+          order: 2,
+        });
+
+        await this.educationService.create({
+          institution: 'IES Ignacio Ellacuría',
+          degree: 'Bachillerato de Ciencias Sociales',
+          fieldOfStudy: 'Ciencias sociales',
+          description: 'Formación en ciencias sociales con enfoque en trabajo en equipo y liderazgo.',
+          startDate: new Date('2021-09-01'),
           endDate: new Date('2023-06-30'),
           current: false,
           activities: [
-            'Software Development',
-            'Algorithms',
-            'Data Structures'
+            'Formación',
+            'Trabajo en equipo',
+            'Liderazgo'
           ],
-          order: 1,
+          order: 3,
         });
       }
 
@@ -107,55 +149,55 @@ export class AppController {
         }
       }
 
-      // Proyecto 1: Portfolio Profesional
+      // Project 1: Professional Portfolio
       await this.projectsService.create({
-        title: 'Portfolio Profesional',
-        description: 'Portfolio profesional desarrollado con Next.js y NestJS. Aplicación que muestra información profesional, proyectos, experiencia y formación académica. Los datos se gestionan desde la base de datos.',
+        title: 'Professional Portfolio',
+        description: 'Professional portfolio developed with Next.js and NestJS. Application that displays professional information, projects, experience and academic background. Data is managed from the database.',
         technologies: ['Next.js 15', 'React 19', 'TypeScript', 'NestJS', 'PostgreSQL', 'TypeORM', 'Tailwind CSS', 'shadcn/ui', 'Docker'],
         githubUrl: 'https://github.com/DevAlvaroHA/portfolio',
         liveUrl: 'https://aha-portfolio.vercel.app/',
         features: [
-          'Diseño responsive optimizado para todos los dispositivos',
-          'API REST con documentación Swagger',
-          'Gestión de datos con PostgreSQL y TypeORM',
-          'Panel de administración para editar contenido',
-          'Deployment en Vercel (frontend) y Render (backend)'
+          'Responsive design optimized for all devices',
+          'REST API with Swagger documentation',
+          'Data management with PostgreSQL and TypeORM',
+          'Admin panel to edit content',
+          'Deployment on Vercel (frontend) and Render (backend)'
         ],
         featured: true,
         category: 'Full Stack',
         order: 1,
       });
 
-      // Proyecto 2: Perfil GitHub (DevAlvaroHA)
+      // Project 2: GitHub Profile (DevAlvaroHA)
       await this.projectsService.create({
-        title: 'DevAlvaroHA - Perfil Profesional',
-        description: 'Perfil profesional de GitHub que presenta mis habilidades como Full-Stack Developer con especialización en Sistemas, Redes, DevOps, Cloud y Ciberseguridad.',
+        title: 'DevAlvaroHA - Professional Profile',
+        description: 'GitHub professional profile showcasing my skills as a Full-Stack Developer with specialization in Systems, Networks, DevOps, Cloud and Cybersecurity.',
         technologies: ['JavaScript', 'Python', 'React', 'Node.js', 'PostgreSQL', 'MySQL', 'Docker', 'Linux', 'Windows Server', 'Git'],
         githubUrl: 'https://github.com/DevAlvaroHA/DevAlvaroHA',
         features: [
-          'Presentación completa de tecnologías y habilidades',
-          'Stack tecnológico: Frontend (React, Redux, Next.js), Backend (Node.js, Express, NestJS)',
-          'DevOps & Infraestructura: Docker, Linux, Nginx, Apache',
-          'Bases de datos: PostgreSQL, MySQL, MongoDB',
-          'Sistemas, Redes & Seguridad: Windows Server, Firewalls, VPN, Kali Linux'
+          'Complete presentation of technologies and skills',
+          'Tech stack: Frontend (React, Redux, Next.js), Backend (Node.js, Express, NestJS)',
+          'DevOps & Infrastructure: Docker, Linux, Nginx, Apache',
+          'Databases: PostgreSQL, MySQL, MongoDB',
+          'Systems, Networks & Security: Windows Server, Firewalls, VPN, Kali Linux'
         ],
         featured: false,
         category: 'Other',
         order: 2,
       });
 
-      // Proyecto 3: NotasMugiwara
+      // Project 3: NotasMugiwara
       await this.projectsService.create({
         title: 'NotasMugiwara',
-        description: 'Aplicación web Full Stack de gestión de notas construida con React, Vite y backend integrado. Permite agregar, visualizar y organizar notas de manera interactiva con selección de temas de color.',
+        description: 'Full Stack notes management web application built with React, Vite and integrated backend. Allows adding, viewing and organizing notes interactively with color theme selection.',
         technologies: ['React', 'Vite', 'JavaScript', 'CSS', 'Docker', 'Backend'],
         githubUrl: 'https://github.com/DevAlvaroHA/NotasMugiwara',
         features: [
-          'Agregar y visualizar notas personalizadas',
-          'Selector de colores para temas de notas',
-          'Interfaz responsiva adaptada a móviles y escritorio',
-          'Gestión de estado con React Hooks (useState, useEffect)',
-          'Dockerización completa con Docker Compose'
+          'Add and view personalized notes',
+          'Color selector for note themes',
+          'Responsive interface adapted to mobile and desktop',
+          'State management with React Hooks (useState, useEffect)',
+          'Complete Dockerization with Docker Compose'
         ],
         featured: false,
         category: 'Full Stack',

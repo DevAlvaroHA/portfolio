@@ -22,7 +22,7 @@ export async function getActiveProfile(): Promise<Profile> {
   });
 
   if (!response.ok) {
-    throw new Error('Error al obtener perfil');
+    throw new Error('Error fetching profile');
   }
 
   return await response.json();
@@ -41,7 +41,7 @@ export async function getAllProjects(): Promise<Project[]> {
   });
 
   if (!response.ok) {
-    throw new Error('Error al obtener proyectos');
+    throw new Error('Error fetching projects');
   }
 
   return await response.json();
@@ -60,7 +60,7 @@ export async function getAllExperience(): Promise<Experience[]> {
   });
 
   if (!response.ok) {
-    throw new Error('Error al obtener experiencia');
+    throw new Error('Error fetching experience');
   }
 
   return await response.json();
@@ -79,7 +79,7 @@ export async function getAllEducation(): Promise<Education[]> {
   });
 
   if (!response.ok) {
-    throw new Error('Error al obtener educación');
+    throw new Error('Error fetching education');
   }
 
   return await response.json();

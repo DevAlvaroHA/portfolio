@@ -100,7 +100,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className='text-xl font-semibold text-purple-400'>Full-Stack Web Developer</h3>
                 <p className='text-gray-300 text-sm leading-relaxed text-justify'>
-                  React, Node.js, MySQL. Desarrollo completo de aplicaciones web que optimizan procesos, conectando frontend moderno con backend robusto y escalable
+                  React, Node.js, MySQL. Complete development of web applications that optimize processes, connecting modern frontend with robust and scalable backend
                 </p>
               </div>
             </div>
@@ -112,9 +112,9 @@ export default function AboutPage() {
                     <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01' />
                   </svg>
                 </div>
-                <h3 className='text-xl font-semibold text-purple-400'>Sistemas & Redes + DevOps</h3>
+                <h3 className='text-xl font-semibold text-purple-400'>Systems & Networks + DevOps</h3>
                 <p className='text-gray-300 text-sm leading-relaxed text-justify'>
-                  Linux, Docker, Cloud & Virtualización. Administración de sistemas, automatización con Python y entornos IT robustos que escalan de forma segura
+                  Linux, Docker, Cloud & Virtualization. System administration, automation with Python and robust IT environments that scale securely
                 </p>
               </div>
             </div>
@@ -124,9 +124,9 @@ export default function AboutPage() {
                 <div className='w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center hover:bg-purple-600/30 hover:scale-110 transition-all duration-300'>
                   <Shield className='w-6 h-6 text-purple-400' />
                 </div>
-                <h3 className='text-xl font-semibold text-purple-400'>Ciberseguridad & UX</h3>
+                <h3 className='text-xl font-semibold text-purple-400'>Cybersecurity & UX</h3>
                 <p className='text-gray-300 text-sm leading-relaxed text-justify'>
-                  Ethical Hacking, Análisis Forense Digital y Firewalls. Protección de infraestructuras con enfoque en experiencia de usuario segura y funcional
+                  Ethical Hacking, Digital Forensic Analysis and Firewalls. Infrastructure protection with a focus on secure and functional user experience
                 </p>
               </div>
             </div>

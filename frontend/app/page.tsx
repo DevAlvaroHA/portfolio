@@ -58,7 +58,7 @@ export default function HomePage() {
 
           {/* Subtitle */}
           <p className='text-base sm:text-xl md:text-2xl text-purple-200 font-light max-w-3xl mx-auto text-center leading-relaxed px-4'>
-            Técnico Superior ASIR & DAW | Full-Stack Web Developer | Sistemas & Redes | Ciberseguridad
+            Senior Technician ASIR & DAW | Full-Stack Web Developer | Systems & Networks | Cybersecurity
           </p>
 
           {/* CTA */}

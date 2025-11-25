@@ -8,8 +8,8 @@ export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Obtener todos los proyectos' })
-  @ApiResponse({ status: 200, description: 'Proyectos de Álvaro Hermosilla' })
+  @ApiOperation({ summary: 'Get all projects' })
+  @ApiResponse({ status: 200, description: 'List of projects' })
   @ApiQuery({ name: 'category', required: false })
   findAll(@Query('category') category?: string) {
     if (category) {
@@ -19,8 +19,8 @@ export class ProjectsController {
   }
 
   @Get('featured')
-  @ApiOperation({ summary: 'Obtener proyectos destacados' })
-  @ApiResponse({ status: 200, description: 'Proyectos destacados' })
+  @ApiOperation({ summary: 'Get featured projects' })
+  @ApiResponse({ status: 200, description: 'Featured projects' })
   findFeatured() {
     return this.projectsService.findFeatured();
   }

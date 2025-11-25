@@ -25,11 +25,11 @@ async function bootstrap() {
     .setTitle('Portfolio API')
     .setDescription('Professional Portfolio RESTful API')
     .setVersion('1.0')
-    .addTag('profile', 'Endpoints para gestionar información personal')
-    .addTag('projects', 'Endpoints para gestionar proyectos')
-    .addTag('experience', 'Endpoints para gestionar experiencia laboral')
-    .addTag('education', 'Endpoints para gestionar formación académica')
-    .addTag('contact', 'Endpoints para mensajes de contacto')
+    .addTag('profile', 'Endpoints for managing personal information')
+    .addTag('projects', 'Endpoints for managing projects')
+    .addTag('experience', 'Endpoints for managing work experience')
+    .addTag('education', 'Endpoints for managing education')
+    .addTag('contact', 'Endpoints for contact messages')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
