@@ -35,18 +35,20 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   
   app.enableCors({
-    origin: [
-      'http://localhost:3000',
-      'http://localhost:3003',
-      'http://frontend:3003',
-      'https://portfolio-nl32jqzw4-devalvarohas-projects.vercel.app',
-      'https://aha-portfolio-72ake2rfo-devalvarohas-projects.vercel.app',
-      'https://aha-portfolio.vercel.app',
-      process.env.FRONTEND_URL || '',
-    ].filter(url => url !== ''),
+    origin: process.env.NODE_ENV === 'production' 
+      ? [
+          'https://aha-portfolio.vercel.app',
+          process.env.FRONTEND_URL || '',
+        ].filter(url => url !== '')
+      : [
+          'http://localhost:3000',
+          'http://localhost:3003',
+          'http://frontend:3003',
+        ],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    maxAge: 86400, // Cache preflight 24 hours
   });
 
   const port = process.env.PORT || 3000;

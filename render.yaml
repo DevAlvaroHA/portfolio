@@ -36,8 +36,6 @@ services:
         value: "false" # IMPORTANTE: Mantener en false en producción. Usar migraciones adecuadas.
       - key: NODE_ENV
         value: "production"
-      - key: JWT_SECRET
-        generateValue: true
       - key: FRONTEND_URL
         value: https://your-portfolio-frontend.onrender.com # Actualizar con tu URL de Render
 

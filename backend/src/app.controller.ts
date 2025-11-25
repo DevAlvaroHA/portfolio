@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, HttpException, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ProfileService } from './profile/profile.service';
 import { ProjectsService } from './projects/projects.service';
@@ -22,6 +22,14 @@ export class AppController {
 
   @Post('seed')
   async runSeed() {
+    // SEGURIDAD: Solo permitir seed en desarrollo
+    if (process.env.NODE_ENV === 'production') {
+      throw new HttpException(
+        'Seed endpoint disabled in production',
+        HttpStatus.FORBIDDEN,
+      );
+    }
+    
     try {
       // Crear perfil
       const profiles = await this.profileService.findAll();
