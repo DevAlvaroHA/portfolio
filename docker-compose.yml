@@ -40,7 +40,7 @@ services:
     restart: always
     environment:
       - POSTGRES_USER=${DATABASE_USER:-postgres}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-changeme}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD:-SuperSecurePassword123!}
       - POSTGRES_DB=${DATABASE_NAME:-portfolio}
     ports:
       - "5433:5432"

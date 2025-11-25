@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getApiInfo() {
-    return {
+    const endpoints = {
       name: 'Portfolio API',
       version: '1.0.0',
       status: 'running',
@@ -16,8 +16,14 @@ export class AppService {
           'POST /contact',
         ],
         docs: 'GET /api (Swagger)',
-        seed: 'POST /seed',
-      }
+      },
     };
+
+    // Solo mostrar seed en desarrollo
+    if (process.env.NODE_ENV !== 'production') {
+      endpoints.endpoints['seed'] = 'POST /seed (development only)';
+    }
+
+    return endpoints;
   }
 }
