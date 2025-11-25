@@ -32,6 +32,8 @@ async function bootstrap() {
       'http://localhost:3003',
       'http://frontend:3003',
       'https://portfolio-nl32jqzw4-devalvarohas-projects.vercel.app',
+      'https://aha-portfolio-72ake2rfo-devalvarohas-projects.vercel.app',
+      'https://aha-portfolio.vercel.app',
       process.env.FRONTEND_URL || '',
     ].filter(url => url !== ''),
     credentials: true,
