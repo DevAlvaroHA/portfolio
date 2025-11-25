@@ -37,13 +37,6 @@ export default function SiteFooter() {
             >
               <Linkedin className='h-5 w-5 sm:h-6 sm:w-6' />
             </a>
-            <a 
-              href='mailto:alvaro.hermosilla.alameda@gmail.com'
-              className='text-purple-400 hover:text-purple-300 hover:scale-110 transition-all duration-300 p-2'
-              aria-label='Email'
-            >
-              <Mail className='h-5 w-5 sm:h-6 sm:w-6' />
-            </a>
           </div>
         </div>
       </div>
