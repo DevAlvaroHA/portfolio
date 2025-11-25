@@ -2,12 +2,23 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-  // Enable validation globally
-  app.useGlobalPipes(new ValidationPipe());
+  // Security: Helmet headers (XSS, clickjacking, etc.)
+  app.use(helmet({
+    contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false,
+    crossOriginEmbedderPolicy: false, // Para que Swagger funcione
+  }));
+  
+  // Enable validation globally with whitelist and transform
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true, // Strip properties that don't have decorators
+    forbidNonWhitelisted: true, // Throw error if non-whitelisted properties
+    transform: true, // Transform payloads to DTO instances
+  }));
   
   // Set up Swagger documentation
   const config = new DocumentBuilder()

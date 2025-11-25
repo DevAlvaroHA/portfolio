@@ -10,6 +10,25 @@ Portfolio profesional Full-Stack desarrollado con Next.js y NestJS. Aplicación 
 - ✅ **Mobile First**: Navegación responsive con menú hamburguesa
 - ✅ **Visor de CV**: Visualización integrada de CV en PDF
 - ✅ **Categorización**: Proyectos organizados por categorías (Full Stack, Frontend, Backend, etc.)
+- ✅ **Seguridad Hardened**: Rate limiting, Helmet headers, validación estricta de inputs
+
+## 🔒 Seguridad Implementada
+
+### Backend
+- **Rate Limiting**: 20 requests/minuto por IP (protección contra DDoS y brute force)
+- **Helmet**: Headers de seguridad (X-Frame-Options, CSP, XSS Protection)
+- **Validación Estricta**: 
+  - Campos con límites de longitud (2-2000 caracteres)
+  - Whitelist de propiedades (rechaza campos no definidos)
+  - Sanitización automática de inputs
+- **DATABASE_SYNC**: Forzado a `false` en producción (previene pérdida de datos)
+- **SSL/TLS**: Conexiones encriptadas a base de datos en producción
+
+### Frontend  
+- **Security Headers**: HSTS, X-Content-Type-Options, Referrer-Policy
+- **Permissions-Policy**: Deshabilita APIs innecesarias (camera, microphone, geolocation)
+- **X-Frame-Options**: Previene clickjacking
+- **No XSS vectors**: Sin `dangerouslySetInnerHTML` ni `innerHTML`
 
 ## 🛠️ Stack Tecnológico
 

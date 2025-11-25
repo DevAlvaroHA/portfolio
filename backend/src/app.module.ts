@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 // ENTITIES
 import { Profile } from './profile/entities/profile.entity';
@@ -23,6 +24,10 @@ import { AppService } from './app.service';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ThrottlerModule.forRoot([{
+      ttl: 60000, // 60 segundos
+      limit: 20, // 20 requests por minuto por IP
+    }]),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -44,7 +49,7 @@ import { AppService } from './app.service';
             password: url.password,
             database: url.pathname.slice(1), // Remove leading /
             entities: [Profile, Project, Experience, Education, ContactMessage],
-            synchronize: configService.get<boolean>('DATABASE_SYNC', false),
+            synchronize: false, // SIEMPRE false en producción por seguridad
             ssl: {
               rejectUnauthorized: false,
             },
@@ -61,7 +66,7 @@ import { AppService } from './app.service';
           password: configService.get<string>('DATABASE_PASSWORD', 'postgres'),
           database: configService.get<string>('DATABASE_NAME', 'portfolio'),
           entities: [Profile, Project, Experience, Education, ContactMessage],
-          synchronize: configService.get<boolean>('DATABASE_SYNC', true),
+          synchronize: process.env.NODE_ENV !== 'production' && configService.get<boolean>('DATABASE_SYNC', true),
           logging: true,
         };
       },
