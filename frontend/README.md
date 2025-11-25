@@ -58,63 +58,44 @@ frontend/
 ├── app/                      # App Router de Next.js
 │   ├── page.tsx             # Página principal (home)
 │   ├── layout.tsx           # Layout principal
+│   ├── globals.css          # Estilos globales
 │   ├── about/               # Página "Sobre mí"
 │   ├── projects/            # Página de proyectos
-│   ├── experience/          # Página de experiencia
-│   ├── education/           # Página de educación
-│   ├── contact/             # Página de contacto
-│   ├── login/               # Login para admin
-│   └── register/            # Registro (admin)
+│   └── resume/              # Página de currículum
 ├── components/              # Componentes React
-│   ├── header.tsx           # Cabecera de navegación
+│   ├── navigation.tsx       # Barra de navegación con menú mobile
 │   ├── footer.tsx           # Pie de página
 │   ├── loading-spinner.tsx  # Spinner de carga
-│   ├── protected-route.tsx  # HOC para rutas protegidas
 │   └── ui/                  # Componentes de shadcn/ui
-├── contexts/                # Contextos de React
-│   └── auth-context.tsx     # Contexto de autenticación
 ├── shared/                  # Código compartido
 │   ├── interface.ts         # Interfaces TypeScript
 │   └── portfolio-services.ts # Servicios API
 ├── lib/                     # Utilidades
-│   └── utils.ts             # Funciones helper
-└── styles/                  # Estilos globales
-    └── globals.css
+│   └── utils.ts             # Funciones helper de Tailwind
+└── public/                  # Archivos estáticos
+    └── CV_ÁlvaroHermosillaAlameda.pdf
 ```
 
 ## 🎨 Páginas Principales
 
-### Públicas
-- **/** - Home con hero, proyectos destacados y CTA
-- **/about** - Sobre mí, habilidades, idiomas
-- **/projects** - Galería de proyectos con filtros
-- **/experience** - Timeline de experiencia laboral
-- **/education** - Formación académica
-- **/contact** - Formulario de contacto
-
-### Autenticadas
-- **/login** - Acceso al panel de admin
-- **/admin** - Panel de administración (pendiente)
+- **/** - Home con hero y proyectos destacados
+- **/about** - Perfil completo: bio, experiencia, educación, habilidades
+- **/projects** - Galería de proyectos con filtros por categoría
+- **/resume** - Currículum descargable en PDF
 
 ## 🔌 Integración con Backend
 
 Los servicios están en `shared/portfolio-services.ts`:
 
 ```typescript
-// Públicos (sin autenticación)
-getActiveProfile()
-getAllProjects()
-getFeaturedProjects()
-getAllExperience()
-getAllEducation()
-sendContactMessage(data)
-
-// Privados (requieren JWT)
-createProject(data, token)
-updateProject(id, data, token)
-deleteProject(id, token)
-// ... etc
+// Servicios API públicos
+getActiveProfile()      // Obtiene el perfil activo
+getAllProjects()        // Lista todos los proyectos
+getAllExperience()      // Lista experiencia laboral
+getAllEducation()       // Lista formación académica
 ```
+
+Todos los endpoints son públicos y no requieren autenticación.
 
 ## 🎨 Temas y Estilos
 
@@ -123,31 +104,14 @@ deleteProject(id, token)
 - **Animaciones** suaves con Tailwind transitions
 - **Responsive** desde mobile a desktop
 
-## 🔐 Autenticación
+## 🎨 Componentes UI
 
-El frontend usa JWT tokens almacenados en localStorage:
-- `token` - JWT del usuario
-- `user` - Información del usuario
+Utiliza **shadcn/ui** para componentes reutilizables:
+- Avatar, Badge, Button, Card
+- Dropdown Menu, Form, Input, Label
+- Skeleton loaders, Toast notifications
 
-El contexto `AuthContext` gestiona el estado de autenticación globalmente.
-
-## 📝 Formularios
-
-Todos los formularios usan React Hook Form + Zod:
-
-```typescript
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-
-const schema = z.object({
-  // validaciones
-});
-
-const { register, handleSubmit, formState: { errors } } = useForm({
-  resolver: zodResolver(schema)
-});
-```
+Todos los componentes están en `components/ui/` y se pueden personalizar con Tailwind.
 
 ## 🚀 Deployment
 

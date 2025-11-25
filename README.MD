@@ -1,39 +1,54 @@
 # Portfolio Profesional
 
-Portfolio profesional desarrollado con Next.js y NestJS. Aplicación que muestra información profesional, proyectos, experiencia y formación académica. Los datos se gestionan desde la base de datos y se pueden editar desde el panel de administración.
+Portfolio profesional Full-Stack desarrollado con Next.js y NestJS. Aplicación moderna que muestra información profesional, proyectos, experiencia laboral y formación académica de forma dinámica y responsive.
 
-## 🚀 Tecnologías
+## 🚀 Características
+
+- ✅ **Diseño Moderno**: Interfaz responsive con animaciones y efectos visuales
+- ✅ **Gestión Dinámica**: Todos los datos se gestionan desde PostgreSQL
+- ✅ **API REST**: Backend con documentación Swagger automática
+- ✅ **Mobile First**: Navegación responsive con menú hamburguesa
+- ✅ **Visor de CV**: Visualización integrada de CV en PDF
+- ✅ **Categorización**: Proyectos organizados por categorías (Full Stack, Frontend, Backend, etc.)
+
+## 🛠️ Stack Tecnológico
 
 ### Backend
-- NestJS + TypeScript
-- PostgreSQL + TypeORM
-- Swagger API Documentation
-- Endpoints públicos (solo lectura)
+- **NestJS** - Framework Node.js para aplicaciones empresariales
+- **TypeScript** - Tipado estático
+- **PostgreSQL 15** - Base de datos relacional
+- **TypeORM** - ORM para gestión de datos
+- **Swagger** - Documentación API automática
+- **Docker** - Contenedor para PostgreSQL
 
 ### Frontend
-- Next.js 15 + React 19
-- TypeScript
-- Tailwind CSS + shadcn/ui
-- Diseño responsive
+- **Next.js 15** - Framework React con App Router
+- **React 19** - Biblioteca UI
+- **TypeScript** - Tipado estático
+- **Tailwind CSS** - Estilos utility-first
+- **shadcn/ui** - Componentes UI accesibles
+- **Lucide React** - Iconos
+- **Sonner** - Notificaciones toast
 
-## 📋 Requisitos
-- Node.js 18+
-- Docker Desktop
-- Git
+## 📋 Requisitos Previos
 
-## 🛠️ Guía de Instalación
+- **Node.js** 18 o superior
+- **Docker Desktop** para PostgreSQL
+- **Git** para clonar el repositorio
+- **npm** o **pnpm** como gestor de paquetes
+
+## 🚀 Instalación y Configuración
 
 ### 1. Clonar el repositorio
+
 ```bash
-git clone https://github.com/DevAlvaroHA/Portfolio
-cd Portfolio
+git clone https://github.com/DevAlvaroHA/portfolio.git
+cd portfolio
 ```
 
 ### 2. Configurar variables de entorno
 
-Copia los archivos de ejemplo:
-
-Copia los archivos de ejemplo y configúralos con tus credenciales:
+Copia los archivos de ejemplo y configúralos:
 
 ```bash
 # Raíz del proyecto
@@ -46,58 +61,57 @@ cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
 ```
 
-Edita cada archivo `.env` con tus valores. Ver archivos `.env.example` para más detalles.
+**Variables importantes a configurar:**
 
-### 3. Crear contenedor de base de datos
+**Backend (`backend/.env`):**
+- `DATABASE_PASSWORD`: Contraseña segura para PostgreSQL
+- `FRONTEND_URL`: URL del frontend (por defecto: http://localhost:3003)
+
+**Frontend (`frontend/.env`):**
+- `NEXT_PUBLIC_API_URL`: URL del backend (por defecto: http://localhost:3000)
+
+### 3. Crear contenedor de PostgreSQL
 
 ```bash
-docker container run -i -t -e POSTGRES_PASSWORD=tu_password_seguro -e POSTGRES_DB=portfolio -v portfolio_postgres_data:/var/lib/postgresql/data -p 5433:5432 --name portfolio_db postgres:15-alpine
+docker container run -i -t \
+  -e POSTGRES_PASSWORD=tu_password_seguro \
+  -e POSTGRES_DB=portfolio \
+  -v portfolio_postgres_data:/var/lib/postgresql/data \
+  -p 5433:5432 \
+  --name portfolio_db \
+  postgres:15-alpine
 ```
 
-**Nota:** Reemplaza `tu_password_seguro` con una contraseña segura.
-
-**Gestionar el contenedor:**
-```bash
-# Iniciar
-docker container start portfolio_db
-
-# Detener
-docker container stop portfolio_db
-
-# Ver logs
-docker logs portfolio_db
-```
+**Nota:** Usa la misma contraseña que configuraste en `backend/.env`
 
 ### 4. Instalar dependencias
 
-**Backend:**
 ```bash
+# Backend
 cd backend
 npm install
-```
 
-**Frontend:**
-```bash
-cd frontend
+# Frontend
+cd ../frontend
 npm install --legacy-peer-deps
 ```
 
-### 5. Poblar base de datos con seed
+### 5. Poblar la base de datos
 
 ```bash
 cd backend
 npm run seed
 ```
 
-Este comando creará datos de ejemplo:
-- ✅ Perfil profesional de ejemplo
+Este comando creará:
+- ✅ Perfil profesional con datos de ejemplo
 - ✅ Experiencia laboral de muestra
-- ✅ 3 Formaciones académicas de ejemplo
-- ✅ 9 Proyectos de ejemplo (Full Stack, Frontend, Backend, Cybersecurity)
+- ✅ Formación académica de ejemplo
+- ✅ Proyectos de ejemplo
 
-### 6. Ejecutar en desarrollo
+**IMPORTANTE:** Edita `backend/src/seed.ts` y `backend/src/app.controller.ts` con tus datos reales antes de ejecutar el seed.
 
-Abre dos terminales:
+### 6. Iniciar la aplicación
 
 **Terminal 1 - Backend:**
 ```bash
@@ -113,109 +127,206 @@ npm run dev
 
 ### 7. Acceder a la aplicación
 
-- **Portfolio público**: http://localhost:3003
-- **API Backend**: http://localhost:3000
-- **Swagger Docs**: http://localhost:3000/api
+| Servicio | URL | Descripción |
+|----------|-----|-------------|
+| **Portfolio** | http://localhost:3003 | Aplicación web principal |
+| **API Backend** | http://localhost:3000 | REST API |
+| **Swagger Docs** | http://localhost:3000/api | Documentación interactiva |
 
-## 📝 Cómo Actualizar el Contenido
+## 📁 Estructura del Proyecto
 
-### Opción 1: Editar el Seed y Re-ejecutar
-
-Modifica `backend/src/seed.ts` con tus datos y ejecuta:
-
-```bash
-cd backend
-npm run seed
+```
+portfolio/
+├── backend/              # API NestJS
+│   ├── src/
+│   │   ├── profile/      # Módulo de perfil profesional
+│   │   ├── projects/     # Módulo de proyectos
+│   │   ├── experience/   # Módulo de experiencia laboral
+│   │   ├── education/    # Módulo de formación académica
+│   │   ├── contact/      # Módulo de mensajes de contacto
+│   │   ├── app.controller.ts  # Endpoint /seed
+│   │   ├── app.module.ts      # Módulo raíz
+│   │   ├── seed.ts            # Script de seed
+│   │   └── main.ts            # Punto de entrada
+│   ├── .env.example
+│   └── package.json
+│
+├── frontend/             # Aplicación Next.js
+│   ├── app/
+│   │   ├── page.tsx           # Home (/)
+│   │   ├── about/page.tsx     # Sobre mí (/about)
+│   │   ├── projects/page.tsx  # Proyectos (/projects)
+│   │   ├── resume/page.tsx    # CV (/resume)
+│   │   ├── layout.tsx         # Layout raíz
+│   │   └── globals.css        # Estilos globales
+│   ├── components/
+│   │   ├── navigation.tsx     # Header con navegación
+│   │   ├── footer.tsx         # Footer
+│   │   ├── loading-spinner.tsx
+│   │   └── ui/                # Componentes shadcn/ui
+│   ├── shared/
+│   │   ├── portfolio-services.ts  # Servicios API
+│   │   └── interface.ts           # Interfaces TypeScript
+│   ├── public/
+│   │   └── CV_ÁlvaroHermosillaAlameda.pdf  # CV en PDF
+│   ├── .env.example
+│   └── package.json
+│
+├── .env.example          # Variables globales
+├── docker-compose.yml    # Configuración Docker (opcional)
+├── README.md             # Este archivo
+├── QUICK_START.md        # Guía rápida
+└── SECURITY.md           # Políticas de seguridad
 ```
 
-### Opción 2: Editar Directamente en la Base de Datos
+## 🌐 Endpoints de la API
 
-Usa un cliente PostgreSQL (pgAdmin, DBeaver, etc.) y conecta a:
-- Host: localhost
-- Puerto: 5433
-- Usuario: postgres
-- Password: (el que configuraste en .env)
-- Database: portfolio
+### Públicos (sin autenticación)
 
-Tablas principales:
-- `profile` - Tu información personal
-- `project` - Tus proyectos
-- `experience` - Tu experiencia laboral
-- `education` - Tu formación académica
-- `contact_message` - Mensajes recibidos
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/` | Información de la API |
+| POST | `/seed` | Poblar base de datos con datos de ejemplo |
+| GET | `/profile/active` | Obtener perfil activo |
+| GET | `/projects` | Listar todos los proyectos |
+| GET | `/projects/featured` | Proyectos destacados |
+| GET | `/experience` | Experiencia laboral |
+| GET | `/education` | Formación académica |
+| POST | `/contact` | Enviar mensaje de contacto |
 
-### Opción 3: Modificar el Código del Seed
+**Nota:** Todos los endpoints están documentados en Swagger: http://localhost:3000/api
 
-Edita `backend/src/seed.ts`:
+## 📝 Personalizar Contenido
+
+### Opción 1: Editar archivos seed
+
+1. Edita `backend/src/seed.ts` con tus datos
+2. Edita `backend/src/app.controller.ts` (endpoint `/seed`)
+3. Ejecuta: `npm run seed` en el backend
+
+### Opción 2: Editar directamente en la base de datos
+
+Usa un cliente PostgreSQL (DBeaver, pgAdmin, TablePlus):
+
+**Conexión:**
+- Host: `localhost`
+- Puerto: `5433`
+- Usuario: `postgres`
+- Password: (tu contraseña del .env)
+- Database: `portfolio`
+
+**Tablas:**
+- `profile` - Información personal
+- `projects` - Proyectos
+- `experience` - Experiencia laboral
+- `education` - Formación académica
+- `contact_messages` - Mensajes recibidos
+
+### Actualizar CV
+
+Reemplaza el archivo `frontend/public/CV_ÁlvaroHermosillaAlameda.pdf` con tu CV y actualiza la referencia en `frontend/app/resume/page.tsx` si cambias el nombre del archivo.
+
+## 🎨 Personalización Visual
+
+### Cambiar colores
+
+Edita `frontend/tailwind.config.ts`:
 
 ```typescript
-// Línea 24 - Perfil
-await profileService.create({
-  fullName: 'Tu Nombre',
-  title: 'Tu Título',
-  bio: 'Tu biografía...',
-  // ... más campos
-});
-
-// Línea 59 - Experiencia
-await experienceService.create({
-  company: 'Empresa',
-  position: 'Cargo',
-  // ... más campos
-});
-
-// Línea 80 - Educación
-await educationService.create({
-  institution: 'Institución',
-  degree: 'Título',
-  // ... más campos
-});
-
-// Línea 153 - Proyectos
-await projectsService.create({
-  title: 'Nombre del Proyecto',
-  description: 'Descripción...',
-  // ... más campos
-});
+theme: {
+  extend: {
+    colors: {
+      // Personaliza los colores aquí
+    }
+  }
+}
 ```
 
-## 📦 Estructura del Proyecto
+### Añadir secciones
 
-```
-Portfolio/
-├── backend/          # API NestJS
-│   ├── src/
-│   │   ├── profile/        # Información personal
-│   │   ├── projects/       # Proyectos
-│   │   ├── experience/     # Experiencia laboral
-│   │   ├── education/      # Formación académica
-│   │   ├── contact/        # Mensajes de contacto
-│   │   └── seed.ts         # Script para poblar datos
-│   └── ...
-├── frontend/         # Next.js App
-│   ├── app/
-│   │   ├── page.tsx           # Home
-│   │   ├── about/             # Sobre mí
-│   │   ├── projects/          # Galería de proyectos
-│   │   ├── experience/        # Timeline de experiencia
-│   │   ├── education/         # Historial académico
-│   │   └── contact/           # Formulario de contacto
-│   └── ...
-└── docs/             # Documentación
+Las páginas están en `frontend/app/[nombre]/page.tsx`. Sigue la estructura existente para crear nuevas secciones.
+
+## 🐳 Comandos Docker
+
+```bash
+# Iniciar contenedor
+docker container start portfolio_db
+
+# Detener contenedor
+docker container stop portfolio_db
+
+# Ver logs
+docker logs portfolio_db
+
+# Acceder a PostgreSQL
+docker exec -it portfolio_db psql -U postgres -d portfolio
+
+# Eliminar contenedor (⚠️ borra los datos)
+docker container rm -f portfolio_db
 ```
 
 ## 🚢 Deployment
 
-### Recomendaciones:
-- **Frontend**: Vercel (gratis, optimizado para Next.js)
-- **Backend**: Render / Railway (tier gratis disponible)
-- **Base de datos**: Supabase / Neon / Render PostgreSQL
+### Frontend (Vercel - Recomendado)
 
-Ver `render.yaml` para configuración de deployment.
+1. Conecta tu repositorio en [Vercel](https://vercel.com)
+2. Configura las variables de entorno:
+   - `NEXT_PUBLIC_API_URL`: URL de tu backend en producción
+3. Deploy automático con cada push a `main`
+
+### Backend (Render / Railway)
+
+1. Crea un servicio web en [Render](https://render.com) o [Railway](https://railway.app)
+2. Conecta tu repositorio
+3. Configura las variables de entorno del backend
+4. Añade un servicio PostgreSQL
+
+Ver `render.yaml` para configuración específica de Render.
+
+## 🧪 Testing
+
+```bash
+# Backend
+cd backend
+npm test                 # Tests unitarios
+npm run test:e2e        # Tests E2E
+npm run test:cov        # Cobertura
+
+# Frontend
+cd frontend
+npm run lint            # Linting
+npm run build           # Build de producción
+```
+
+## 📚 Documentación Adicional
+
+- **Guía Rápida**: Ver `QUICK_START.md`
+- **Seguridad**: Ver `SECURITY.md`
+- **API Docs**: http://localhost:3000/api (Swagger)
+
+## 🤝 Contribución
+
+Este es un proyecto personal de portfolio. Si encuentras bugs o tienes sugerencias, abre un issue.
+
+## 📄 Licencia
+
+Este proyecto está bajo la **Licencia MIT**. Esto significa que puedes:
+
+✅ Usar el código para proyectos personales o comerciales  
+✅ Modificar y adaptar el código según tus necesidades  
+✅ Distribuir copias del código  
+✅ Usar el código en proyectos privados  
+
+**Requisitos:**
+- Debes incluir el aviso de copyright original
+- Debes incluir una copia de la licencia MIT
+
+Consulta el archivo [LICENSE](./LICENSE) para el texto legal completo.
+
+**© 2025 Álvaro Hermosilla Alameda**
 
 ## 📧 Contacto
 
-Para soporte o consultas sobre este proyecto, abre un issue en GitHub o contacta al desarrollador.
-
-## 📄 Licencia
-MIT
+Para consultas sobre este proyecto:
+- GitHub: [@DevAlvaroHA](https://github.com/DevAlvaroHA)
+- Portfolio: [aha-portfolio.vercel.app](https://aha-portfolio.vercel.app)

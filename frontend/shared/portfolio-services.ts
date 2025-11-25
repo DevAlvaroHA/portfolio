@@ -5,8 +5,6 @@ import {
   Project,
   Experience,
   Education,
-  ContactMessage,
-  CreateContactMessage,
 } from './interface';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
@@ -49,36 +47,6 @@ export async function getAllProjects(): Promise<Project[]> {
   return await response.json();
 }
 
-export async function getFeaturedProjects(): Promise<Project[]> {
-  const response = await fetch(`${API_URL}/projects/featured`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('Error al obtener proyectos destacados');
-  }
-
-  return await response.json();
-}
-
-export async function getProjectsByCategory(category: string): Promise<Project[]> {
-  const response = await fetch(`${API_URL}/projects?category=${category}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error('Error al obtener proyectos por categoría');
-  }
-
-  return await response.json();
-}
-
 // ============================================
 // EXPERIENCE SERVICES (Solo lectura)
 // ============================================
@@ -112,27 +80,6 @@ export async function getAllEducation(): Promise<Education[]> {
 
   if (!response.ok) {
     throw new Error('Error al obtener educación');
-  }
-
-  return await response.json();
-}
-
-// ============================================
-// CONTACT SERVICES
-// ============================================
-
-export async function sendContactMessage(data: CreateContactMessage): Promise<ContactMessage> {
-  const response = await fetch(`${API_URL}/contact`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || 'Error al enviar mensaje');
   }
 
   return await response.json();

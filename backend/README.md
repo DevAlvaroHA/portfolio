@@ -27,34 +27,27 @@ Access:
 
 ## 📚 API Endpoints
 
-### Auth
-- `POST /users/register` - Register admin
-- `POST /users/login` - Login
+Todos los endpoints son públicos (no requieren autenticación):
+
+### General
+- `GET /` - Health check de la API
+- `POST /seed` - Poblar base de datos (solo desarrollo)
 
 ### Profile
-- `GET /profile/active` - Get public profile
-- `POST /profile` - Create profile (admin)
+- `GET /profile/active` - Obtener perfil activo
 
 ### Projects
-- `GET /projects` - List all projects
-- `GET /projects/featured` - Featured projects
-- `POST /projects` - Create project (admin)
+- `GET /projects` - Listar todos los proyectos
+- `GET /projects/featured` - Proyectos destacados
 
 ### Experience
-- `GET /experience` - List experience
-- `POST /experience` - Create experience (admin)
+- `GET /experience` - Listar experiencia laboral
 
 ### Education
-- `GET /education` - List education
-- `POST /education` - Create education (admin)
+- `GET /education` - Listar formación académica
 
 ### Contact
-- `POST /contact` - Send message (public)
-- `GET /contact` - List messages (admin)
-
-## 🔐 Admin Access
-
-El script seed crea un usuario administrador. Las credenciales se pueden ver en el archivo `src/seed.ts` o configurarse según tus necesidades de seguridad.
+- `POST /contact` - Enviar mensaje de contacto
 
 ## 🛠️ Scripts
 

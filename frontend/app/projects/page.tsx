@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         const data = await getAllProjects();
         setProjects(data);
       } catch (error) {
-        console.error('Error fetching projects:', error);
+        // Error fetching projects - silent fail
       }
     }
 
@@ -90,10 +90,7 @@ export default function ProjectsPage() {
             {filters.map((filter) => (
               <button
                 key={filter}
-                onClick={() => {
-                  console.log('Clicking filter:', filter);
-                  setSelectedFilter(filter);
-                }}
+                onClick={() => setSelectedFilter(filter)}
                 className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
                   selectedFilter === filter
                     ? 'bg-purple-600 text-white shadow-2xl shadow-purple-600/50 scale-105'

@@ -12,16 +12,13 @@ async function bootstrap() {
   // Set up Swagger documentation
   const config = new DocumentBuilder()
     .setTitle('Portfolio API')
-    .setDescription('Professional Portfolio RESTful API with authentication')
+    .setDescription('Professional Portfolio RESTful API')
     .setVersion('1.0')
-    .addBearerAuth()
     .addTag('profile', 'Endpoints para gestionar información personal')
     .addTag('projects', 'Endpoints para gestionar proyectos')
     .addTag('experience', 'Endpoints para gestionar experiencia laboral')
     .addTag('education', 'Endpoints para gestionar formación académica')
     .addTag('contact', 'Endpoints para mensajes de contacto')
-    .addTag('auth', 'Endpoints de autenticación')
-    .addTag('users', 'Endpoints de gestión de usuarios admin')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

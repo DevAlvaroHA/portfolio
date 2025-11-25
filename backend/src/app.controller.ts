@@ -16,8 +16,8 @@ export class AppController {
   ) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getApiInfo() {
+    return this.appService.getApiInfo();
   }
 
   @Post('seed')
@@ -27,19 +27,21 @@ export class AppController {
       const profiles = await this.profileService.findAll();
       if (profiles.length === 0) {
         await this.profileService.create({
-          fullName: 'Portfolio Owner',
-          title: 'Full-Stack Developer | Software Engineer',
-          bio: 'Passionate developer with experience in modern web technologies.',
-          location: 'World',
-          email: 'contact@example.com',
+          fullName: 'Álvaro Hermosilla Alameda',
+          title: 'Full-Stack Web Developer | Sistemas & Redes | DevOps & Cloud',
+          bio: 'Me apasiona conectar el desarrollo de software con la infraestructura que lo hace posible. Combino desarrollo Full-Stack Web (React, Node.js, MySQL) con administración de sistemas y buenas prácticas DevOps (Linux, Docker), creando soluciones que funcionan, escalan y se mantienen seguras. Creo en la tecnología como motor de eficiencia y oportunidad: desde aplicaciones web que optimizan procesos hasta entornos cloud robustos y protegidos frente a amenazas.',
+          location: 'España',
+          email: 'alvaro.hermosilla.alameda@gmail.com',
           phone: undefined,
-          linkedinUrl: 'https://www.linkedin.com/in/your-profile',
-          githubUrl: 'https://github.com/your-username',
+          linkedinUrl: 'https://es.linkedin.com/in/%C3%A1lvaro-hermosilla-alameda-587526339',
+          githubUrl: 'https://github.com/DevAlvaroHA',
           skills: [
-            'JavaScript', 'TypeScript', 'React', 'Node.js',
-            'PostgreSQL', 'Docker', 'Git'
+            'JavaScript', 'TypeScript', 'Python', 'React', 'Redux', 'Next.js',
+            'Node.js', 'Express', 'NestJS', 'PostgreSQL', 'MySQL', 'MongoDB',
+            'Docker', 'Linux', 'Nginx', 'Apache', 'Git', 'GitHub',
+            'Windows Server', 'Firewalls', 'VPN', 'Kali Linux', 'Ethical Hacking'
           ],
-          languages: ['English (Native)'],
+          languages: ['Español (Nativo)', 'Inglés'],
           isActive: true,
         });
       }
@@ -48,21 +50,23 @@ export class AppController {
       const experiences = await this.experienceService.findAll();
       if (experiences.length === 0) {
         await this.experienceService.create({
-          company: 'Tech Company',
-          position: 'Software Developer',
-          description: 'Developing modern web applications.',
+          company: 'Futura Tickets',
+          position: 'Desarrollador Web',
+          description: 'Desarrollo de una plataforma web para compra y venta de entradas basada en tecnología blockchain.',
           responsibilities: [
-            'Full-stack development',
-            'Team collaboration',
-            'Code reviews'
+            'Desarrollo de plataforma web para compra y venta de entradas',
+            'Implementación de transacciones seguras con tecnología blockchain',
+            'Implementación de funcionalidades de gestión de usuarios',
+            'Participación en entorno de trabajo ágil',
+            'Colaboración remota con el equipo técnico'
           ],
-          technologies: ['React', 'Node.js', 'PostgreSQL'],
-          startDate: new Date('2023-01-01'),
-          endDate: new Date('2024-12-31'),
+          technologies: ['Blockchain', 'Web Development', 'JavaScript', 'React', 'Node.js'],
+          startDate: new Date('2024-09-01'),
+          endDate: new Date('2024-12-01'),
           current: false,
-          location: 'Remote',
+          location: 'Teletrabajo',
           companyUrl: undefined,
-          employmentType: 'Full-time',
+          employmentType: 'Teletrabajo',
           order: 1,
         });
       }
@@ -95,15 +99,59 @@ export class AppController {
         }
       }
 
+      // Proyecto 1: Portfolio Profesional
       await this.projectsService.create({
-        title: 'Portfolio Website',
-        description: 'Modern portfolio built with Next.js and NestJS.',
-        technologies: ['Next.js', 'React', 'TypeScript', 'NestJS', 'PostgreSQL'],
-        githubUrl: 'https://github.com/your-username/portfolio',
-        features: ['Responsive design', 'REST API', 'Database integration'],
+        title: 'Portfolio Profesional',
+        description: 'Portfolio profesional desarrollado con Next.js y NestJS. Aplicación que muestra información profesional, proyectos, experiencia y formación académica. Los datos se gestionan desde la base de datos.',
+        technologies: ['Next.js 15', 'React 19', 'TypeScript', 'NestJS', 'PostgreSQL', 'TypeORM', 'Tailwind CSS', 'shadcn/ui', 'Docker'],
+        githubUrl: 'https://github.com/DevAlvaroHA/portfolio',
+        liveUrl: 'https://aha-portfolio.vercel.app/',
+        features: [
+          'Diseño responsive optimizado para todos los dispositivos',
+          'API REST con documentación Swagger',
+          'Gestión de datos con PostgreSQL y TypeORM',
+          'Panel de administración para editar contenido',
+          'Deployment en Vercel (frontend) y Render (backend)'
+        ],
         featured: true,
         category: 'Full Stack',
         order: 1,
+      });
+
+      // Proyecto 2: Perfil GitHub (DevAlvaroHA)
+      await this.projectsService.create({
+        title: 'DevAlvaroHA - Perfil Profesional',
+        description: 'Perfil profesional de GitHub que presenta mis habilidades como Full-Stack Developer con especialización en Sistemas, Redes, DevOps, Cloud y Ciberseguridad.',
+        technologies: ['JavaScript', 'Python', 'React', 'Node.js', 'PostgreSQL', 'MySQL', 'Docker', 'Linux', 'Windows Server', 'Git'],
+        githubUrl: 'https://github.com/DevAlvaroHA/DevAlvaroHA',
+        features: [
+          'Presentación completa de tecnologías y habilidades',
+          'Stack tecnológico: Frontend (React, Redux, Next.js), Backend (Node.js, Express, NestJS)',
+          'DevOps & Infraestructura: Docker, Linux, Nginx, Apache',
+          'Bases de datos: PostgreSQL, MySQL, MongoDB',
+          'Sistemas, Redes & Seguridad: Windows Server, Firewalls, VPN, Kali Linux'
+        ],
+        featured: false,
+        category: 'Other',
+        order: 2,
+      });
+
+      // Proyecto 3: NotasMugiwara
+      await this.projectsService.create({
+        title: 'NotasMugiwara',
+        description: 'Aplicación web Full Stack de gestión de notas construida con React, Vite y backend integrado. Permite agregar, visualizar y organizar notas de manera interactiva con selección de temas de color.',
+        technologies: ['React', 'Vite', 'JavaScript', 'CSS', 'Docker', 'Backend'],
+        githubUrl: 'https://github.com/DevAlvaroHA/NotasMugiwara',
+        features: [
+          'Agregar y visualizar notas personalizadas',
+          'Selector de colores para temas de notas',
+          'Interfaz responsiva adaptada a móviles y escritorio',
+          'Gestión de estado con React Hooks (useState, useEffect)',
+          'Dockerización completa con Docker Compose'
+        ],
+        featured: false,
+        category: 'Full Stack',
+        order: 3,
       });
 
       return {

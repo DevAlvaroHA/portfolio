@@ -23,7 +23,7 @@ export default function AboutPage() {
         setExperience(experienceData);
         setEducation(educationData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        // Error fetching data - silent fail
       }
     }
 

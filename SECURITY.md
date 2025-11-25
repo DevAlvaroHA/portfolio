@@ -10,13 +10,18 @@ Este documento contiene información importante sobre la seguridad del proyecto 
 - ✅ Los archivos `.env` reales NO están en el repositorio
 
 ### 2. Credenciales Eliminadas de la Documentación
-- ✅ Contraseñas de ejemplo reemplazadas con placeholders
 - ✅ URLs personales eliminadas de los READMEs
-- ✅ Tokens y secrets eliminados de los archivos de configuración
+- ✅ Contraseñas de ejemplo reemplazadas con placeholders
 
 ### 3. Información Personal Generalizada
 - ✅ Datos personales específicos reemplazados con texto genérico
 - ✅ URLs de producción actualizadas con placeholders
+
+### 4. Sistema de Autenticación
+- ℹ️ Este proyecto **NO tiene sistema de autenticación**
+- ℹ️ Todos los endpoints son públicos (excepto el POST /seed para desarrollo)
+- ℹ️ No hay panel de administración ni login
+- ℹ️ Los datos se gestionan directamente desde la base de datos
 
 ## 🔐 Configuración Antes del Primer Push
 
@@ -34,19 +39,19 @@ git ls-files | Select-String -Pattern "\.env"
 
 **Backend (.env):**
 - `DATABASE_PASSWORD`: Usa una contraseña segura
-- `JWT_SECRET`: Genera un string aleatorio de mínimo 64 caracteres
 - `FRONTEND_URL`: Actualiza si usas otro puerto
 
 **Frontend (.env):**
 - `NEXT_PUBLIC_LINKEDIN_URL`: Tu URL de LinkedIn
 - `NEXT_PUBLIC_GITHUB_URL`: Tu URL de GitHub
+- `NEXT_PUBLIC_EMAIL`: Tu email de contacto
 
 ### Paso 3: Configurar Variables en Producción
 
 **Para Render/Railway/Heroku:**
 1. NO subas archivos `.env` al repositorio
 2. Configura las variables de entorno desde el panel de control
-3. Usa valores diferentes a los de desarrollo (especialmente `JWT_SECRET` y passwords)
+3. Usa valores diferentes a los de desarrollo (especialmente passwords de base de datos)
 
 **Para Vercel:**
 1. Configura las variables en el dashboard de Vercel
@@ -57,10 +62,8 @@ git ls-files | Select-String -Pattern "\.env"
 ### NUNCA subir al repositorio:
 - ❌ Archivos `.env` con credenciales reales
 - ❌ Contraseñas de bases de datos
-- ❌ JWT secrets
-- ❌ API keys de servicios externos
+- ❌ API keys de servicios externos (si los usas en el futuro)
 - ❌ Certificados o claves privadas
-- ❌ Tokens de acceso personal
 
 ### Datos personales:
 - ⚠️ Email personal (solo si deseas hacerlo público)
@@ -73,10 +76,10 @@ git ls-files | Select-String -Pattern "\.env"
 ### 1. Gestión de Secretos
 ```bash
 # CORRECTO: Usar variables de entorno
-JWT_SECRET=${JWT_SECRET}
+DATABASE_PASSWORD=${DATABASE_PASSWORD}
 
 # INCORRECTO: Hardcodear secretos
-const secret = "mi-secreto-123";
+const password = "mi-password-123";
 ```
 
 ### 2. Contraseñas Seguras
@@ -85,13 +88,7 @@ const secret = "mi-secreto-123";
 - Usar un gestor de contraseñas (1Password, Bitwarden, LastPass)
 - Contraseñas diferentes para desarrollo y producción
 
-### 3. JWT Secrets
-```bash
-# Generar JWT secret seguro (PowerShell)
--join ((48..57) + (65..90) + (97..122) | Get-Random -Count 64 | ForEach-Object {[char]$_})
-```
-
-### 4. Base de Datos en Producción
+### 3. Base de Datos en Producción
 - ✅ Usar SSL/TLS para conexiones
 - ✅ Configurar reglas de firewall
 - ✅ Limitar acceso por IP si es posible

@@ -77,64 +77,6 @@ export interface Education {
   updatedAt: string;
 }
 
-export interface ContactMessage {
-  id: number;
-  name: string;
-  email: string;
-  subject?: string;
-  message: string;
-  phone?: string;
-  company?: string;
-  read: boolean;
-  createdAt: string;
-}
-
-export interface CreateContactMessage {
-  name: string;
-  email: string;
-  subject?: string;
-  message: string;
-  phone?: string;
-  company?: string;
-}
-
-// ============================================
-// AUTH INTERFACES
-// ============================================
-
-export interface User {
-  id: number;
-  username: string;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface CreateAccount {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export interface LoginAccount {
-  email: string;
-  password: string;
-}
-
-export interface AuthContextType {
-  isAuthenticated: boolean;
-  loading: boolean;
-  setAuth: (value: boolean) => void;
-}
-
-export interface DecodedToken {
-  isAuthenticated: boolean;
-  id?: string;
-  username?: string;
-  email?: string;
-  exp?: number;
-}
-
 // Reexportar tipos necesarios
 export type { FieldValues, FieldPath } from 'react-hook-form';
 export type { VariantProps } from 'class-variance-authority';

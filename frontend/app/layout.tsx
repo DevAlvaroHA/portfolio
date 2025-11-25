@@ -1,10 +1,10 @@
 import type React from 'react';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
 import Header from '@/components/navigation';
-import SiteFooter from '@/components/site-footer';
+import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,6 +25,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -35,10 +41,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className='flex flex-col min-h-screen'>
           <Header />
-          <main className='flex-1 pt-16'>
+          <main className='flex-1 pt-[72px] sm:pt-[88px]'>
             {children}
           </main>
-          <SiteFooter />
+          <Footer />
         </div>
         <Toaster 
           position="top-right"

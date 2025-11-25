@@ -47,32 +47,32 @@ export default function HomePage() {
       <section className='min-h-screen flex items-center justify-center px-6 relative' style={{zIndex: 10}}>
         <div className='max-w-5xl mx-auto text-center space-y-12 fade-in'>
           {/* Main Heading */}
-          <div className='space-y-6'>
-            <h1 className='text-6xl md:text-8xl lg:text-9xl font-black tracking-[-0.02em] text-transparent bg-clip-text bg-gradient-to-b from-purple-400 via-purple-500 to-purple-600 leading-[0.85] drop-shadow-2xl'>
+          <div className='space-y-4 sm:space-y-6'>
+            <h1 className='text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-[-0.02em] text-transparent bg-clip-text bg-gradient-to-b from-purple-400 via-purple-500 to-purple-600 leading-[0.85] drop-shadow-2xl px-4'>
               ÁLVARO
               <br />
               HERMOSILLA
             </h1>
-            <div className='h-1 w-40 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto shadow-2xl shadow-purple-500/60 rounded-full'></div>
+            <div className='h-1 w-32 sm:w-40 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto shadow-2xl shadow-purple-500/60 rounded-full'></div>
           </div>
 
           {/* Subtitle */}
-          <p className='text-xl md:text-2xl text-purple-200 font-light max-w-3xl mx-auto text-center leading-relaxed'>
+          <p className='text-base sm:text-xl md:text-2xl text-purple-200 font-light max-w-3xl mx-auto text-center leading-relaxed px-4'>
             Técnico Superior ASIR & DAW | Full-Stack Web Developer | Sistemas & Redes | Ciberseguridad
           </p>
 
           {/* CTA */}
-          <div className='flex items-center justify-center gap-6 pt-8'>
+          <div className='flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pt-8 px-4'>
             <Link
               href='/projects'
-              className='group inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-8 py-4 rounded-xl font-semibold hover:from-purple-700 hover:to-purple-800 hover:scale-105 transition-all duration-300 shadow-2xl shadow-purple-600/50 hover:shadow-purple-600/70'
+              className='w-full sm:w-auto group inline-flex items-center justify-center gap-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:from-purple-700 hover:to-purple-800 hover:scale-105 transition-all duration-300 shadow-2xl shadow-purple-600/50 hover:shadow-purple-600/70'
             >
               View My Work
               <ArrowRight className='h-5 w-5 group-hover:translate-x-2 transition-transform duration-300' />
             </Link>
             <Link
               href='/about'
-              className='inline-flex items-center gap-3 bg-white/5 backdrop-blur-sm border-2 border-purple-500/50 text-white px-8 py-4 rounded-xl font-semibold hover:bg-purple-600/20 hover:border-purple-400 hover:scale-105 transition-all duration-300'
+              className='w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-sm border-2 border-purple-500/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-purple-600/20 hover:border-purple-400 hover:scale-105 transition-all duration-300'
             >
               About Me
             </Link>

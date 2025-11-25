@@ -6,7 +6,7 @@ import LoadingSpinner from '@/components/loading-spinner';
 
 export default function ResumePage() {
   const [loading, setLoading] = useState(true);
-  const pdfUrl = '/CV.pdf'; // URL del CV en la carpeta public
+  const pdfUrl = '/CV_ÁlvaroHermosillaAlameda.pdf'; // URL del CV en la carpeta public
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 800);
